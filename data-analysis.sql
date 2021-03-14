@@ -60,11 +60,18 @@ group by last_name
 order by name_count desc;
 
 
+-- Playing with data to answer the bonus section.... see the answers in data-analysis.ipynb
 select * from salaries;
 select * from titles;
 
-select avg(s.salary), t.title 
+select avg(s.salary), t.title, count(t.title) 
 from salaries s, titles t, employees e
 where s.emp_no = e.emp_no 
 and t.title_id = e.emp_title_id
 group by t.title;
+
+select e.last_name, e.first_name, t.title, s.salary
+from employees e, titles t, salaries s
+where e.emp_no = 499942
+and e.emp_no = s.emp_no
+and e.emp_title_id = t.title_id;
