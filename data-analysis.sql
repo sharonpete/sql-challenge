@@ -75,3 +75,19 @@ from employees e, titles t, salaries s
 where e.emp_no = 499942
 and e.emp_no = s.emp_no
 and e.emp_title_id = t.title_id;
+
+
+select max(salary)
+from salaries;
+
+select s.salary, t.title, e.last_name, e.first_name
+from salaries s, titles t, employees e
+where s.salary=129492
+and e.emp_no = s.emp_no
+and e.emp_title_id = t.title_id
+group by s.salary, t.title, e.last_name, e.first_name;
+
+
+
+select min(salary)
+from salaries;
