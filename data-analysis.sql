@@ -59,3 +59,12 @@ from employees
 group by last_name
 order by name_count desc;
 
+
+select * from salaries;
+select * from titles;
+
+select avg(s.salary), t.title 
+from salaries s, titles t, employees e
+where s.emp_no = e.emp_no 
+and t.title_id = e.emp_title_id
+group by t.title;

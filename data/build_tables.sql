@@ -93,10 +93,10 @@ select * from employees;
 
 
 -- drop tables and select statements left for convenience and tuning
-drop table if exists departments cascade;
-drop table if exists employees cascade;
-drop table if exists titles cascade;--
-drop table if exists salaries cascade;
-drop table if exists dept_manager cascade;
-drop table if exists dept_emp cascade;
+--drop table if exists departments cascade;
+--drop table if exists employees cascade;
+--drop table if exists titles cascade;--
+--drop table if exists salaries cascade;
+--drop table if exists dept_manager cascade;
+--drop table if exists dept_emp cascade;
 
