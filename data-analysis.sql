@@ -87,7 +87,11 @@ and e.emp_no = s.emp_no
 and e.emp_title_id = t.title_id
 group by s.salary, t.title, e.last_name, e.first_name;
 
-
+select max(salary)
+from salaries
+where salary < 129492
+and salary < 127238
+and salary < 127041;
 
 select min(salary)
 from salaries;
