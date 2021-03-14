@@ -4,29 +4,38 @@
 
 
 CREATE TABLE "departments" (
-	id SERIAL PRIMARY KEY,
     "dept_no" varchar NOT NULL,
     "dept_name" varchar   NOT NULL,
 	UNIQUE(dept_no)
 );
-drop table departments;
-select * from departments;
+--drop table departments;
+--select * from departments;
+
+
+CREATE TABLE "titles" (
+    "title_id" varchar NOT NULL,
+    "title" varchar   NOT NULL,
+	UNIQUE(title_id)
+);
+--drop table titles;
+--select * from titles;
 
 CREATE TABLE "employees" (
-    "emp_no" int PRIMARY KEY,
-    "emp_title_id" int   NOT NULL,
+    "emp_no" int NOT NULL,
+    "emp_title_id" varchar   NOT NULL,
     "birth_date" varchar   NOT NULL,
     "first_name" varchar   NOT NULL,
     "last_name" varchar   NOT NULL,
     "sex" varchar   NOT NULL,
-    "hire_date" varchar   NOT NULL
+    "hire_date" varchar   NOT NULL,
+	UNIQUE(emp_no)
 );
-
+--drop table employees;
 --select * from employees;
 
 CREATE TABLE "dept_emp" (
     "emp_no" int NOT NULL,
-    "dept_no" int   NOT NULL,
+    "dept_no" varchar   NOT NULL,
 	PRIMARY KEY (emp_no, dept_no)
 );
 
@@ -34,7 +43,7 @@ CREATE TABLE "dept_emp" (
 --select * from dept_emp;
 
 CREATE TABLE "dept_manager" (
-    "dept_no" int   NOT NULL,
+    "dept_no" varchar   NOT NULL,
     "emp_no" int   NOT NULL,
 	PRIMARY KEY (dept_no, emp_no)
 );
@@ -50,12 +59,6 @@ CREATE TABLE "salaries" (
 --select * from salaries;
 
 
-CREATE TABLE "titles" (
-    "title_id" SERIAL PRIMARY KEY,
-    "title" varchar   NOT NULL
-);
-
---select * from titles;
 
 ALTER TABLE "dept_emp" ADD CONSTRAINT "fk_dept_emp_emp_no" FOREIGN KEY("emp_no")
 REFERENCES "employees" ("emp_no");
@@ -84,19 +87,16 @@ ON "employees" ("emp_no");
 CREATE INDEX "idx_titles_title_id"
 ON "titles" ("title_id");
 
---drop tables and select statements left for convenience and tuning
+alter table "employees" alter column hire_date type date using (hire_date::date);
+alter table "employees" alter column birth_date type date using (birth_date::date);
+select * from employees;
+
+
+-- drop tables and select statements left for convenience and tuning
 drop table if exists departments cascade;
 drop table if exists employees cascade;
-drop table if exists titles cascade;
+drop table if exists titles cascade;--
 drop table if exists salaries cascade;
 drop table if exists dept_manager cascade;
-drop table if exists dept_employee cascade;
+drop table if exists dept_emp cascade;
 
-INSERT INTO 
-departments ("dept_no", "dept_name") 
-VALUES ('d001', 'Marketing');
-
-select * from departments;
-
-
-INSERT INTO departments (dept_no, dept_name) VALUES ('d001', 'Marketing'), ('d002', 'Finance'), ('d003', 'Human Resources'), ('d004', 'Production'), ('d005', 'Development'), ('d006', 'Quality Management'), ('d007', 'Sales'), ('d008', 'Research'), ('d009', 'Customer Service');
